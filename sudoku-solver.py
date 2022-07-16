@@ -1,3 +1,6 @@
+from cgi import test
+
+
 test_sudoku = [
     [3,0,0,0],
     [0,2,0,1],
@@ -15,16 +18,17 @@ answer = [
 
 #TO DO
 
-#iterate over array and look for 0's
-for row, x in enumerate(test_sudoku):
-    for column, y in enumerate(x):
-        if y == 0:
-            pass
-            #print(row,column)
-        
-#horizontal line checking function
-print(test_sudoku[0][2])
-#vertical line checking function
+zero_positions = []
 
-#grid line checking function
+#iterate over array and look for 0's
+for row, i in enumerate(test_sudoku):
+    for column, j in enumerate(i):
+        if j == 0:
+            zero_positions.append({'x': row,'y': column})
+        
+# checking functions
+
+for i in zero_positions:
+
+    print(test_sudoku[i['x']][i['y']])
 
