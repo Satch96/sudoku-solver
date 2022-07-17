@@ -1,4 +1,8 @@
 
+from math import sqrt
+
+
+
 test_sudoku = [
     [3,0,0,0],
     [0,2,0,1],
@@ -42,12 +46,28 @@ for row, i in enumerate(test_sudoku):
 #     iterator = 0
 
 #vertical checker
+# for i in zero_positions:
+#     number = 1
+#     iterator = 0
+#     while iterator < len(test_sudoku):
+#         vertical_list = [row[i['y']] for row in test_sudoku]
+#         for x in vertical_list:
+#             if x == number:
+#                 number +=1
+#                 iterator = 0
+#                 break
+#             iterator +=1
+#     test_sudoku[i['x']][i['y']] = number
+#     number += 1
+#     iterator = 0
+
+
+# grid checker
 for i in zero_positions:
     number = 1
     iterator = 0
     while iterator < len(test_sudoku):
-        vertical_list = [row[i['y']] for row in test_sudoku]
-        for x in vertical_list:
+        for x in test_sudoku[i['x']]:
             if x == number:
                 number +=1
                 iterator = 0
@@ -56,6 +76,9 @@ for i in zero_positions:
     test_sudoku[i['x']][i['y']] = number
     number += 1
     iterator = 0
-print(test_sudoku)
 
-# grid checker
+grid_number = int(sqrt(len(test_sudoku)))
+print(grid_number)
+
+# 0 + grid_number * int(coordinate/grid_number)
+# iterate 'grid_number' of times
