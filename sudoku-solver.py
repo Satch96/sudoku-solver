@@ -27,11 +27,27 @@ for row, i in enumerate(test_sudoku):
 # checking functions
 
 # horizontal checker
+# for i in zero_positions:
+#     number = 1
+#     iterator = 0
+#     while iterator < len(test_sudoku):
+#         for x in test_sudoku[i['x']]:
+#             if x == number:
+#                 number +=1
+#                 iterator = 0
+#                 break
+#             iterator +=1
+#     test_sudoku[i['x']][i['y']] = number
+#     number += 1
+#     iterator = 0
+
+#vertical checker
 for i in zero_positions:
     number = 1
     iterator = 0
     while iterator < len(test_sudoku):
-        for x in test_sudoku[i['x']]:
+        vertical_list = [row[i['y']] for row in test_sudoku]
+        for x in vertical_list:
             if x == number:
                 number +=1
                 iterator = 0
@@ -40,6 +56,6 @@ for i in zero_positions:
     test_sudoku[i['x']][i['y']] = number
     number += 1
     iterator = 0
-
-
 print(test_sudoku)
+
+# grid checker
