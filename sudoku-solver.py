@@ -31,26 +31,37 @@ for row, i in enumerate(test_sudoku):
 
 def checking(type, number):
 
-    iterator = 0
-    #get difference between current number and 1 so you know how much to iterate
-    diff = number - 1
+    if len(type) == 0:
+        pass
+    else:
+        iterator = 0
+        #get difference between current number and 1 so you know how much to iterate
+        diff = number - 1
 
-    while iterator < len(test_sudoku) - diff:
-        for x in type:
-            if x == number:
-                number +=1
-                iterator = 0
-                break
-            iterator +=1
-    
+        while iterator < len(test_sudoku) - diff:
+            for x in type:
+                if x == number:
+                    number +=1
+                    iterator = 0
+                    break
+                iterator +=1
+        
     return number
 
+# need to add something adds number for a particular zero position. so during the checks can also check that number
+numbers_tried = []
 
-    
+# goes through all zero positions and checks to see if number already used
+zero_positions_length = len(zero_positions)
 
-#combine all 3 checking functions:
+for i in range(zero_positions_length):
+    numbers_tried.append([])
 
-for i in zero_positions:
+
+count = 0
+while count < zero_positions_length:
+
+    i = zero_positions[count]
     
     horizontal_list = test_sudoku[i['y']]
     vertical_list = [row[i['x']] for row in test_sudoku]
@@ -67,10 +78,10 @@ for i in zero_positions:
             mini_grid_numbers.append(test_sudoku[y_start + j][x_start + k])
     
     number = 1
-
     iterator2 = 0
 
-    while iterator2 < 3:
+    #this makes sure it does all of the checking functions at least once
+    while iterator2 < 4:
 
         new_number = checking(horizontal_list, number)
         if new_number != number:
@@ -93,9 +104,22 @@ for i in zero_positions:
         else:
             number = new_number
             iterator2 += 1
+        new_number = checking(numbers_tried[count], number)
+        if new_number != number:
+            number = new_number
+            iterator2 = 1
+        else:
+            number = new_number
+            iterator2 += 1
 
-    test_sudoku[i['y']][i['x']] = number
-
+    if number > 9:
+        test_sudoku[i['y']][i['x']] = 0
+        numbers_tried[count] = []
+        count-=1
+    else:
+        test_sudoku[i['y']][i['x']] = number
+        numbers_tried[count].append(number)
+        count +=1
 
 
 print(test_sudoku)
