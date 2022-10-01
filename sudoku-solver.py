@@ -1,18 +1,14 @@
 
 from math import sqrt
 
+test_sudoku = []
 
-test_sudoku = [
-    [7,6,0,2,0,0,0,0,4],
-    [0,0,1,0,4,0,0,8,0],
-    [0,9,0,3,0,1,0,2,5],
-    [8,0,0,0,1,0,0,0,7],
-    [0,4,0,0,0,2,0,5,0],
-    [0,0,5,4,0,9,8,0,0],
-    [0,0,7,0,6,0,0,0,9],
-    [3,0,0,8,0,0,0,7,0],
-    [0,2,0,0,9,0,1,0,0]
-]
+print("Please enter each line of your sudoku as a list of numbers, then hit enter. For blank spaces use 0")
+
+for i in range(9):
+    x = input()
+    arr = [int(n) for n in x]
+    test_sudoku.append(arr)
 
 
 # get size of smaller grids
@@ -106,4 +102,5 @@ while count < zero_positions_length:
         count +=1
 
 
-print(test_sudoku)
+for x in test_sudoku:
+    print(x)
